@@ -1,0 +1,6 @@
+local-venv/
+.env
+testing.ipynb
+generate.py
+testing_FRONTEND/
+__pycache__
