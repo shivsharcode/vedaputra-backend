@@ -48,7 +48,7 @@ app.add_middleware(
 )
 
 @app.get('/')
-def lander():
+def read_root():
     return {"msg": "Welcome to Veda-putra"}
 
 @app.post('/chat')
