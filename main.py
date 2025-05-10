@@ -47,7 +47,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/', methods=['GET', 'HEAD', 'POST'])
+@app.api_route('/', methods=['GET', 'HEAD', 'POST'])
 def read_root():
     return {"msg": "Welcome to Veda-putra"}
 
