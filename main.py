@@ -20,14 +20,16 @@ gemini_key = os.getenv("GEMINI_API_KEY")
 # Gemeni Cliet
 client = genai.Client(api_key=gemini_key)
 
-# Create chat
-chat = client.chats.create(
-        model="gemini-2.0-flash",
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompts,
-            temperature=0.3
-        ),
-)
+# # Create chat
+# chat = client.chats.create(
+#         model="gemini-2.0-flash",
+#         config=types.GenerateContentConfig(
+#             system_instruction=system_prompts,
+#             temperature=0.3,
+#             max_output_tokens=2048 # Or a sufficiently large number for your use case   
+            
+#         ),
+# )
 
 
 from pydantic import BaseModel
@@ -55,6 +57,19 @@ def read_root():
 async def chat_with_ai(request: ChatRequest):
     user_prompt = request.query
     # user_prompt = body.get("query", "")
+    
+    # Create chat
+    chat = client.chats.create(
+        model="gemini-2.0-flash",
+        config=types.GenerateContentConfig(
+            system_instruction=system_prompts,
+            temperature=0.3,
+            max_output_tokens=2048 # Or a sufficiently large number for your use case   
+            
+        ),
+    )   
+    
+    
     
     if not user_prompt:
         return {"error": "Query cannot be empty"}
